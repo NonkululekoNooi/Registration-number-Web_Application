@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <script src="registration_number.js" charset="utf-8"></script> -->
+    <link rel="stylesheet" href="style.css">
+    <title>Registration</title>
+</head>
+
+<body>
+        <div class="reg"> REGISTRATION </div>
+
+    <form action="/reg_numbers" method="post">
+    <div>
+
+       
+
+        <div class="text">
+            <input maxlength="50" type="textOne" name="regPlates" class="regNoEntered" placeholder="enter a registration number">
+            <button class="regButton" type="submit" {{capturedReg}}>Add Registration</button>
+        </div>
+
+        <div class="please">
+            <label for="town">Please select a town</label>
+        </div>
+
+
+        <div class="Selection">
+            <select name="Choose a Town" class="town" id="city">
+                
+                <option value="select">Select a town</option>
+                <option value="All"> Show All</option>
+                <option value="Cape Town">Cape Town</option>
+                <option value="Paarl">Paarl</option>
+                <option value="George">George</option>
+                <option value="Stellenbosch">Stellenbosch</option>
+               
+            </select>
+            <input type="submit" value="Submit" class="added" />
+        </div>
+</form>
+
+        <div class="regNumbers">
+    
+
+            <div class="regNumber">
+                CY 124-245
+            </div>
+            <div > </div>
+        </div>
+        <div class="message">
+            {{message}}
+        </div>
+       
+
+    </div>
+
+ 
+</body>
+
+<script src="./setTimer.js"></script>
+
+</html>

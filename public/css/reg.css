@@ -1,0 +1,61 @@
+body{
+    background-image: url(main_background.jpg);
+   margin-top: 150px;
+   
+    
+}
+.reg{
+    color: orange;
+    text-align: center;
+    font-size: 40px;
+}
+.text{
+    color:orange;
+    padding-left: 530px;
+    margin-top: 50px; 
+}
+.please{
+    color: orange;
+    padding-left: 530px ;
+    margin-top:30px ;
+    font-size: 20px;
+}
+
+.Selection{
+    color: orange;
+    padding-left: 530px ;
+    margin-top: 20px;
+   
+}
+.output{
+    color: orange;
+    padding-left: 530px;
+    margin-top: 50px;
+}
+.regNumbers{
+    color: orange;
+    padding-left: 530px;
+    margin-top: 30px;
+}
+.message{
+    color: orange;
+}
+
+
+
+ @media screen and (max-width: 800px) {
+
+    .text{
+        padding-left: 50px;
+    }
+    .please{
+        padding-left: 50px; 
+    }
+    .Selection{
+        padding-left: 50px;
+    }
+    .addRegNUmber{
+        margin-bottom: 30px;
+    }
+}
+
