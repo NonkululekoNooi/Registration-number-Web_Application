@@ -81,13 +81,12 @@ app.post("/reg_numbers", async function (req, res) {
 app.post("/filtering",async function(req, res) {
   var dropdown = req.body.places
   var showed = req.body.place
- 
-
-  if(dropdown){
-    var regEntered = await regNo.filtered(dropdown) 
+  console.log(dropdown)
+  if(dropdown === "SHOW ALL"){
+    var regEntered = await regNo.getRegistration() 
+  
   }else {
-    var regEntered = await regNo.getRegistration(showed) 
-    console.log(await regNo.getRegistration(showed))
+    var regEntered = await regNo.filtered(dropdown) 
 }
 res.render("index",{
   message:regEntered
