@@ -1,4 +1,4 @@
 setTimeout (function() {
-    document.querySelector(".message").innerHTML= ""
+    document.querySelector(".messaged").innerHTML= ""
     //document.querySelector(".errored").innerHTML= ""
 },4000);

@@ -37,8 +37,34 @@ body{
     padding-left: 530px;
     margin-top: 30px;
 }
+.messaged{
+    color: rgb(255, 94, 0);
+    padding-left: 530px;
+    margin-top: 10px;
+}
 .message{
     color: orange;
+    padding-left: 10px;
+    display: inline;
+    margin-top: 10px;
+    display: inline-block;
+    padding-left: 20px;
+    width:100px;
+    border: 1px solid orange;
+
+}
+.regNumber{
+    padding-left: 20px;
+    width:100px;
+    border: 1px solid orange;
+    
+
+
+}
+
+.resetMe{
+    padding-left: 530px;
+    margin-top: 20px;
 }
 
 

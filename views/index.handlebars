@@ -12,49 +12,74 @@
 
 <body>
         <div class="reg"> REGISTRATION </div>
+      
 
     <form action="/reg_numbers" method="post">
     <div>
 
-       
+                    {{#if messages}}
+    <h4 class="messaged"> {{messages.error}}</h4>
+
+    {{/if}}
 
         <div class="text">
             <input maxlength="50" type="textOne" name="regPlates" class="regNoEntered" placeholder="enter a registration number">
             <button class="regButton" type="submit" {{capturedReg}}>Add Registration</button>
         </div>
 
-        <div class="please">
+      
+</form>
+
+<form action="/filtering" method="post">
+
+  <div class="please">
             <label for="town">Please select a town</label>
         </div>
 
 
         <div class="Selection">
-            <select name="Choose a Town" class="town" id="city">
+            <select name="places" class="town" id="city">
                 
-                <option value="select">Select a town</option>
-                <option value="All"> Show All</option>
-                <option value="Cape Town">Cape Town</option>
-                <option value="Paarl">Paarl</option>
-                <option value="George">George</option>
-                <option value="Stellenbosch">Stellenbosch</option>
+                <option  value="select">Select a town</option>
+                <option name="place" value="SHOW ALL"> Show All</option>
+                <option name="places" value="CAPE TOWN">Cape Town</option>
+                <option name="places" value="PAARL">Paarl</option>
+                <option name="places" value="GEORGE">George</option>
+                <option name="places" value="Wellington">Wellington</option>
                
             </select>
             <input type="submit" value="Submit" class="added" />
         </div>
-</form>
+   
+  </form>
 
         <div class="regNumbers">
-    
 
             <div class="regNumber">
                 CY 124-245
             </div>
-            <div > </div>
+            {{#each message}}
+        <li class="message">
+            {{this.reg_numbers}}
+        </li>
+        
+
+       {{/each}}
+
+            {{!-- {{#each messages}}
+        <li class="message">
+            {{this.reg_numbers}}
+        </li>
+
+       {{/each}} --}}
         </div>
-        <div class="message">
-            {{message}}
-        </div>
-       
+
+<form action="/resets">
+        <div class="resetMe">
+        <button class="reset" type="">Reset</button>
+  </div>
+     
+    </form>
 
     </div>
 

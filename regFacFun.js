@@ -1,58 +1,69 @@
-module.exports = function registration(){
-    // let carNumbers = ''
-    let numberPlates = [];
-    let regNo = ['CA', 'CL', 'CAW','CJ']
-    let validRegx =/^[A-Z \d ]+$/gm
+module.exports = function registration(db) {
+  let carPlates = {};
 
-    
-    function getRegistration(){
-        return numberPlates
+  async function getRegistration() {
+    let carPlates = await db.manyOrNone(
+      "SELECT reg_numbers FROM carregistration"
+    );
+    console.log(carPlates);
+    return carPlates;
+  }
+
+ 
+  async function addingReg(regNumbers) {
+    if (carPlates.includes(regNumbers)) {
+      return false;
+    } else {
+      return carPlates.push(regNumbers);
     }
+  }
+ 
 
-    function addingReg(regNumbers){
-        
-        if(numberPlates.includes(regNumbers)){
-         return false
-        }else{
-         return numberPlates.push(regNumbers)
-        }
+  async function storedRegistration(regstraNumber) {
+    let identity_id = await db.oneOrNone(
+      "SELECT id FROM numberplates where registration_number =$1",
+      [regstraNumber.slice(0, 2)]
+    );
+
+    let copy = await photoCopy(regstraNumber);
+    if (copy === null) {
+      await db.none(
+        "INSERT INTO carregistration(reg_Numbers,identity_id) values($1, $2)",
+        [regstraNumber, identity_id.id]
+      );
     }
-function errorReg(carNumbers){
-    if(addingReg(carNumbers)== false){
-        return "The registration is already existing"
-    }
-}
-  
-function errorMessages(regNumbers){
-    if(regNumbers == " "){
-        return "Please type in your registration number "
-    
-     }
-    if(regNumbers !== regNo){
-        return "Please enter valid registration number"
-    }
-    
-}
-function filteredReg(dropped) {
-    return numberPlates.filter(function(motorNum){
-        getRegistration(dropped)
-        return motorNum.startsWith(dropped)
-    })
-}
+  }
 
+  async function filtered(Reg) {
+    let identity_id = await db.oneOrNone(
+      "SELECT id FROM numberplates where location =$1",
+      [Reg]
+    );
 
-function gettingReg(){
-    return regNumbers
-}
+    let output = await db.manyOrNone(
+      "SELECT reg_numbers,identity_id FROM carregistration where identity_id=$1",
+      [identity_id.id]
+    );
+    return output;
+  }
 
+  async function photoCopy(bikePlates) {
+    const output = await db.oneOrNone(
+      "SELECT id FROM carregistration WHERE reg_numbers = $1",[bikePlates]
+    );
+    return output;
+  }
 
-    return{
-    errorMessages,
+  async function rested() {
+    return await db.none("DELETE FROM carregistration");
+  }
+
+  return {
+    photoCopy,
     addingReg,
     getRegistration,
-    filteredReg,
-    errorReg
-    
-
-    }
-}
+    storedRegistration,
+    rested,
+    filtered,
+  };
+};
