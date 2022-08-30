@@ -6,7 +6,7 @@ create table number_plates(
 
 create table carregistration(
     id serial primary key,
-    Reg_Numbers VARCHAR(10) NOT NULL,
+    reg_Numbers VARCHAR(10) NOT NULL,
     identity_id integer not null,
     foreign key (identity_id) references number_plates(id)
 );
