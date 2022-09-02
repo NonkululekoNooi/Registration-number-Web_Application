@@ -1,27 +1,25 @@
 module.exports = function registration(db) {
-  let carPlates = {};
+
 
   async function getRegistration() {
     let carPlates = await db.manyOrNone(
       "SELECT reg_numbers FROM carregistration"
     );
-    console.log(carPlates);
+    
     return carPlates;
   }
 
  
-  async function addingReg(regNumbers) {
-    if (carPlates.includes(regNumbers)) {
-      return false;
-    } else {
-      return carPlates.push(regNumbers);
-    }
-  }
+  async function addingReg() {
+   let carPlates = await db.manyOrNone("SELECT Reg_Numbers FROM carregistration");
+   return carPlates;
+ }
+    
  
 
   async function storedRegistration(regstraNumber) {
     let identity_id = await db.oneOrNone(
-      "SELECT id FROM number_plates where registration_number =$1",
+      "SELECT id FROM numberplates where registration_number =$1",
       [regstraNumber.slice(0, 2)]
     );
 
@@ -36,7 +34,7 @@ module.exports = function registration(db) {
 
   async function filtered(Reg) {
     let identity_id = await db.oneOrNone(
-      "SELECT id FROM number_plates where locations =$1",
+      "SELECT id FROM numberplates where location =$1",
       [Reg]
     );
 

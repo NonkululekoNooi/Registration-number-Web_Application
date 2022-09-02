@@ -3,7 +3,7 @@ const session = require("express-session");
 const express = require("express");
 const exphbs = require("express-handlebars");
 const bodyParser = require("body-parser");
-const myGreetedRoutes = require("./routes/regRoutes");
+const myRegRoutes = require("./routes/regRoutes");
 const myReg = require("./regFacFun");
 
 const pgp = require("pg-promise")();
@@ -29,6 +29,9 @@ const config = {
 const db = pgp(config);
 
 const regNo = myReg(db);
+
+const reged = myRegRoutes(regNo)
+
 app.engine("handlebars", exphbs.engine({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
@@ -46,59 +49,10 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.get("/", async function (req, res) {
-  var message = await regNo.getRegistration();
-  res.render("index", {
-    message
-  });
-});
-
-app.post("/reg_numbers", async function (req, res) {
-  let enteredReg = req.body.regPlates.toUpperCase().trim();
-  let validPlates =  /[A-Z]{2,3}\s[0-9]{3}(\-|\s)?[0-9]{3}/
-  
-  
-  if(!enteredReg){
-    req.flash("error", "Please type in your registration number ");
-  }
-  else if(validPlates.test(enteredReg) == false){
-    req.flash('error',"Invalid registration number entered");
-  }
-
-  else if(await regNo.photoCopy(enteredReg) !== null){
-    req.flash('error', 'THIS REGISTRATION IS ALREADY EXISTING')  
-  }
-
-  else if(validPlates.test(enteredReg) === true){
-     await regNo.getRegistration();
-      await regNo.storedRegistration(enteredReg);
-  } 
-  res.redirect("/");
-});
-
-
-
-app.post("/filtering",async function(req, res) {
-  var dropdown = req.body.places
-  var showed = req.body.place
-  console.log(dropdown)
-  if(dropdown === "SHOW ALL"){
-    var regEntered = await regNo.getRegistration() 
-  
-  }else {
-    var regEntered = await regNo.filtered(dropdown) 
-}
-res.render("index",{
-  message:regEntered
-})
-});
-  
-
-app.get("/resets", async function  (req, res) {
-  await regNo.rested();      
-  req.flash("error","YOU RESETED EVERYTHING");
-  res.redirect("/");
-})
+app.get("/",reged.home );
+app.post("/reg_numbers",reged.regNum);
+app.post("/filtering",reged.filter);
+app.get("/resets",reged.resets)
 
 
 const PORT = process.env.PORT || 3008;
