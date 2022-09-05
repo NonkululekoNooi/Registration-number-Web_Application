@@ -4,7 +4,7 @@ const pgp = require("pg-promise")();
 
 const DATABASE_URL =
   process.env.DATABASE_URL ||
-  "postgresql://codex:pg123@localhost:5432/registrations";
+  "postgresql://codex:pg123@localhost:5432/registrations_tests";
 
   const config = {
     connectionString: DATABASE_URL,
@@ -48,7 +48,7 @@ it('should return registrations numbers that are filtered "CAPE TOWN"', async fu
   await regNo.getRegistration("CA 802-541")
   await regNo.getRegistration("CA 802-548")
   await regNo.getRegistration("CA 102-148")
-[
+
       
 
 
