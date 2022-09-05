@@ -50,8 +50,8 @@ it('should return registrations numbers that are filtered "CAPE TOWN"', async fu
   await regNo.getRegistration("CA 102-148")
 
 
-  assert.deepEqual(["identity_id": 1, "reg_numbers": "CA 802-541"},["identity_id": 1, "reg_numbers": "CA 802-548"},
-   ["identity_id": 1, "reg_numbers": "CA 102-148"}],output)
+  assert.deepEqual(["identity_id": 1, "reg_numbers": "CA 802-541"},{"identity_id": 1, "reg_numbers": "CA 802-548"},
+   {"identity_id": 1, "reg_numbers": "CA 102-148"}],output)
 
 })
 
