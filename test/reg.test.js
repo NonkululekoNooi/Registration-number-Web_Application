@@ -4,14 +4,11 @@ const pgp = require("pg-promise")();
 
 const DATABASE_URL =
   process.env.DATABASE_URL ||
-  "postgresql://codex:pg123@localhost:5432/registrations";
+  "postgresql://codex:pg123@localhost:5432/registrations_tests";
 
-const config = {
-  connectionString: DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false,
-  },
-};
+  const config = {
+    connectionString: DATABASE_URL,
+  };
 const db = pgp(config);
 
 describe("Registrations from different town", async function () {
@@ -95,18 +92,18 @@ it("should return registration numbers that are stored",async function () {
 });
 });
 
-// describe("All the registration number should be reseted", async function (){
-//   it("should reset all the registration numbers from the database", async function (){
+describe("All the registration number should be reseted", async function (){
+  it("should reset all the registration numbers from the database", async function (){
    
-//     const regNo = myReg(db);
+    const regNo = myReg(db);
 
-//     await regNo.storedRegistration('CJ 130-012');
-//     await regNo.rested()
+    await regNo.storedRegistration('CJ 130-012');
+    // await regNo.rested()
 
-//     assert.equal([],await regNo.getRegistration())
+    assert.equal(null,await regNo.rested());
 
-//   })
-// })
+  })
+})
 
 
 
