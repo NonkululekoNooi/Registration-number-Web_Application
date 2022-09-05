@@ -4,7 +4,7 @@ const pgp = require("pg-promise")();
 
 const DATABASE_URL =
   process.env.DATABASE_URL ||
-  "postgresql://codex:pg123@localhost:5432/registrations_tests";
+  "postgresql://codex:pg123@localhost:5432/registrations";
 
   const config = {
     connectionString: DATABASE_URL,
@@ -67,7 +67,9 @@ it('should return registrations numbers that are filtered "WELLINGTON"', async f
   assert.deepEqual([{"identity_id": 3, "reg_numbers": "CN 125-898"}], output)
 
 })
-
+after(function(){
+      db.$pool.end
+    })
 // it('should return registrations numbers that are filtered "SHOW ALL"', async function(){
 //   let regNo =myReg(db)
  
@@ -88,8 +90,12 @@ it("should return registration numbers that are stored",async function () {
   await regNo.addingReg([{"reg_numbers": "CN 125-898"}])
   assert.deepEqual( [{"reg_numbers": "CN 125-898"}]
   ,await regNo.getRegistration([{"reg_numbers": "CN 125-898"}]))
+
   
 });
+after(function(){
+  db.$pool.end
+})
 });
 
 describe("All the registration number should be reseted", async function (){
@@ -98,9 +104,12 @@ describe("All the registration number should be reseted", async function (){
     const regNo = myReg(db);
 
     await regNo.storedRegistration('CJ 130-012');
-    // await regNo.rested()
 
     assert.equal(null,await regNo.rested());
+
+    after(function(){
+      db.$pool.end
+    })
 
   })
 })
