@@ -43,11 +43,11 @@ it('should return registrations numbers that are filtered "CAPE TOWN"', async fu
   let regNo =myReg(db)
  
   let output = await regNo.filtered("CAPE TOWN")
-  await regNo.addingReg("CN 125-898")
-  await regNo.addingReg("CJ 130-012")
-  await regNo.addingReg("CA 802-541")
-  await regNo.addingReg("CA 802-548")
-  await regNo.addingReg("CA 102-148")
+  await regNo.storedRegistration("CN 125-898")
+  await regNo.storedRegistration("CJ 130-012")
+  await regNo.storedRegistration("CA 802-541")
+  await regNo.storedRegistration("CA 802-548")
+  await regNo.storedRegistration"CA 102-148")
 
       
 
