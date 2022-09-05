@@ -25,7 +25,7 @@ jobs:
         image: postgres:latest
         
         env:
-          POSTGRES_DB: registrations
+          POSTGRES_DB: registrations_tests
           POSTGRES_PASSWORD: pg123
           POSTGRES_PORT: 5432
           POSTGRES_USER: codex
@@ -50,8 +50,8 @@ jobs:
     - run: npm install -g npm
     - run: npm install
     - run: |
-        PGPASSWORD=pg123 psql -h localhost -U codex -d registrations -a -f table.sql
+        PGPASSWORD=pg123 psql -h localhost -U codex -d registrations_tests -a -f table.sql
     - run: npm run build --if-present
     - run: npm test
     env: 
-      DATABASE_URL: postgresql://codex:pg123@localhost:5432/registration
+      DATABASE_URL: postgresql://codex:pg123@localhost:5432/registrations_tests
