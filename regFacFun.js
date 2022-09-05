@@ -34,7 +34,7 @@ module.exports = function registration(db) {
 
   async function filtered(Reg) {
     let identity_id = await db.oneOrNone(
-      "SELECT id FROM number_plates where location =$1",
+      "SELECT id FROM number_plates where locations =$1",
       [Reg]
     );
 
