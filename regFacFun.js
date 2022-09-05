@@ -39,7 +39,7 @@ module.exports = function registration(db) {
     );
 
     let output = await db.manyOrNone(
-      "SELECT reg_numbers,identity_id FROM carregistration where identity_id=$1",
+      "SELECT Reg_Numbers,identity_id FROM carregistration where identity_id=$1",
       [identity_id.id]
     );
     return output;
