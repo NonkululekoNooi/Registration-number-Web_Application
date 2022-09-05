@@ -47,7 +47,7 @@ it('should return registrations numbers that are filtered "CAPE TOWN"', async fu
   await regNo.storedRegistration("CJ 130-012")
   await regNo.storedRegistration("CA 802-541")
   await regNo.storedRegistration("CA 802-548")
-  await regNo.storedRegistration"CA 102-148")
+  await regNo.storedRegistration("CA 102-148")
 
       
 
