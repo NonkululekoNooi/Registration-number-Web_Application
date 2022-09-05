@@ -43,6 +43,11 @@ it('should return registrations numbers that are filtered "CAPE TOWN"', async fu
   let regNo =myReg(db)
  
   let output = await regNo.filtered("CAPE TOWN")
+  await regNo.getRegistration("CN 125-898")
+  await regNo.getRegistration("CJ 130-012")
+  await regNo.getRegistration("CA 802-541")
+  await regNo.getRegistration("CA 802-548")
+  await regNo.getRegistration("CA 102-148")
 
 
   assert.deepEqual([],output)
