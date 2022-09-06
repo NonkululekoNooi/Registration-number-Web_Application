@@ -1,4 +1,4 @@
 setTimeout (function() {
     document.querySelector(".messaged").innerHTML= ""
-    //document.querySelector(".errored").innerHTML= ""
+    document.querySelector(".nope").innerHTML= ""
 },4000);

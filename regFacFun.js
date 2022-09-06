@@ -53,7 +53,7 @@ module.exports = function registration(db) {
   }
 
   async function rested() {
-    return await db.none("DELETE FROM carregistration");
+    return await db.none("TRUNCATE carregistration");
   }
 
   return {

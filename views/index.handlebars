@@ -63,6 +63,12 @@
 
        {{/each}}
 
+    {{#unless message}}
+
+    <h2 class="nope">THERE IS NO REGISTRATION NUMBERS</h2>
+
+    {{/unless }}
+
             {{!-- {{#each messages}}
         <li class="message">
             {{this.reg_numbers}}

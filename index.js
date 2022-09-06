@@ -17,7 +17,7 @@ if (process.env.DATABASE_URL && !local) {
 
 const DATABASE_URL =
   process.env.DATABASE_URL ||
-  "postgresql://codex:pg123@localhost:5432/registrations";
+  "postgresql://postgres:pg123@localhost:5432/registrations";
 
 const config = {
   connectionString: DATABASE_URL,
