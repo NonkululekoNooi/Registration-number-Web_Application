@@ -4,7 +4,11 @@ const pgp = require("pg-promise")();
 
 const DATABASE_URL =
   process.env.DATABASE_URL ||
-  "postgresql://postgres:pg123@localhost:5432/registrations";
+
+  "postgresql://postgres:pg123@localhost:5432/registrations_tests";
+
+
+
 
   const config = {
     connectionString: DATABASE_URL,
@@ -42,6 +46,9 @@ it("should return registration number from Wellington", async function () {
 it('should return registrations numbers that are filtered "CAPE TOWN"', async function(){
   let regNo =myReg(db)
  
+
+  let output = await regNo.filtered("CAPE TOWN")
+
   await regNo.storedRegistration("CN 125-898")
   await regNo.storedRegistration("CJ 130-012")
   await regNo.storedRegistration("CA 802-541")
@@ -51,17 +58,18 @@ it('should return registrations numbers that are filtered "CAPE TOWN"', async fu
       
 
 
-  assert.deepEqual([{"reg_numbers": "CA 802-541", identity_id: 2},
+assert.deepEqual([{"reg_numbers": "CA 802-541", identity_id: 2},
   {"reg_numbers": "CA 802-548", identity_id: 2},
   {"reg_numbers": "CA 102-148", identity_id: 2} ], await regNo.filtered("CAPE TOWN"))
+
+
+
 
 })
 
 it('should return registrations numbers that are filtered "WELLINGTON"', async function(){
   let regNo =myReg(db)
  
- 
-
   await regNo.storedRegistration("CN 125-898")
   await regNo.storedRegistration("CJ 130-012")
   await regNo.storedRegistration("CA 802-541")
@@ -69,6 +77,13 @@ it('should return registrations numbers that are filtered "WELLINGTON"', async f
   await regNo.storedRegistration("CA 102-148")
 
   assert.deepEqual([{"reg_numbers": "CN 125-898", identity_id: 3}], await regNo.filtered("Wellington"))
+
+  await regNo.addingReg("CN 125-898")
+  await regNo.addingReg("CJ 130-012")
+  await regNo.addingReg("CA 802-541")
+
+  
+
 
 })
 
@@ -102,9 +117,6 @@ it('should return registrations numbers that are filtered "PAARL"', async functi
 
 })
  
-
-
-  
   
   it("should reset all the registration numbers from the database", async function (){
    
