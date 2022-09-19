@@ -45,7 +45,7 @@ module.exports = function registration(db) {
     return output;
   }
 
-  async function photoCopy(bikePlates) {
+  async function duplicate(bikePlates) {
     const output = await db.oneOrNone(
       "SELECT id FROM carregistration WHERE reg_numbers = $1",[bikePlates]
     );
