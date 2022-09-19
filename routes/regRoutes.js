@@ -10,7 +10,7 @@ module.exports = function myGreetedRoutes(regNo){
 
       async function regNum (req, res) {
         let enteredReg = req.body.regPlates.toUpperCase().trim();
-        let validPlates =  /[A-Z]{2,3}\s[0-9]{3}(\-|\s)?[0-9]{3}/
+        let validPlates =  /[CA|CJ|CN]{2,3}\s[0-9]{3}(\-|\s)?[0-9]{3}/
         
         
         if(!enteredReg){
@@ -34,7 +34,7 @@ module.exports = function myGreetedRoutes(regNo){
       async function filter(req, res) {
         var dropdown = req.body.places
         var showed = req.body.place
-        // console.log(dropdown)
+      
         if(dropdown === " "){
         
           req.flash("error",'THERE IS NO REGISTRATION FROM THIS TOWN')

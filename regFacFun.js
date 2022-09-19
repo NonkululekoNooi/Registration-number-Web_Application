@@ -1,5 +1,6 @@
 module.exports = function registration(db) {
 
+ 
 
   async function getRegistration() {
     let carPlates = await db.manyOrNone(

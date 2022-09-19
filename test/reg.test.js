@@ -102,22 +102,6 @@ it('should return registrations numbers that are filtered "PAARL"', async functi
 
 })
 
-it('should return registrations numbers that are filtered "PAARL"', async function(){
-  let regNo =myReg(db)
- 
- 
-
-  await regNo.storedRegistration("CN 125-898")
-  await regNo.storedRegistration("CJ 130-012")
-  await regNo.storedRegistration("CA 802-541")
-  await regNo.storedRegistration("CA 802-548")
-  await regNo.storedRegistration("CA 102-148")
-
-  assert.deepEqual([], await regNo.filtered("SHOW ALL"))
-
-})
- 
-  
   it("should reset all the registration numbers from the database", async function (){
    
     const regNo = myReg(db);
