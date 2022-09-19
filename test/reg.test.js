@@ -102,6 +102,10 @@ it('should return registrations numbers that are filtered "PAARL"', async functi
 
 })
 
+
+ 
+  
+
   it("should reset all the registration numbers from the database", async function (){
    
     const regNo = myReg(db);

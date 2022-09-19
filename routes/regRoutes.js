@@ -20,7 +20,7 @@ module.exports = function myGreetedRoutes(regNo){
           req.flash('error',"Invalid registration number entered");
         }
       
-        else if(await regNo.photoCopy(enteredReg) !== null){
+        else if(await regNo.duplicate(enteredReg) !== null){
           req.flash('error', 'THIS REGISTRATION IS ALREADY EXISTING')  
         }
       

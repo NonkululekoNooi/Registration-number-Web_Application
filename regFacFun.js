@@ -24,7 +24,7 @@ module.exports = function registration(db) {
       [regstraNumber.slice(0, 2)]
     );
 
-    let copy = await photoCopy(regstraNumber);
+    let copy = await duplicate(regstraNumber);
     if (copy === null) {
       await db.none(
         "INSERT INTO carregistration(reg_Numbers,identity_id) values($1, $2)",
@@ -46,7 +46,7 @@ module.exports = function registration(db) {
     return output;
   }
 
-  async function photoCopy(bikePlates) {
+  async function duplicate(bikePlates) {
     const output = await db.oneOrNone(
       "SELECT id FROM carregistration WHERE reg_numbers = $1",[bikePlates]
     );
@@ -58,7 +58,7 @@ module.exports = function registration(db) {
   }
 
   return {
-    photoCopy,
+    duplicate,
     addingReg,
     getRegistration,
     storedRegistration,
